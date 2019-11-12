@@ -39,17 +39,19 @@ const searchUser = async () => {
         let containerDiv = document.querySelector(".userData")// selecting the data from "containerDiv"
         containerDiv.innerHTML = "";// clearing it first
         let filteredUserData = [];
-        switch (searchType) {
-            case "email":
-                filteredUserData = userData.filter(user => user.email.includes(searchText));
-                break;
-            case "name":
-                filteredUserData = userData.filter(user => user.name.includes(searchText));
-                break;
-            case "username":
-                filteredUserData = userData.filter(user => user.username.includes(searchText));
-                break;
-        }
+        filteredUserData = userData.filter(user => user[searchType].includes(searchText));
+
+        // switch (searchType) {
+        //     case "email":
+        //         filteredUserData = userData.filter(user => user.email.includes(searchText));
+        //         break;
+        //     case "name":
+        //         filteredUserData = userData.filter(user => user.name.includes(searchText));
+        //         break;
+        //     case "username":
+        //         filteredUserData = userData.filter(user => user.username.includes(searchText));
+        //         break;
+        // }
         console.log(filteredUserData)
         filteredUserData.map(user => addUser(user))
     }
