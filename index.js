@@ -1,19 +1,20 @@
-const URL = "https://jsonplaceholder.typicode.com/users";
-let userData = [];
+const URL = "https://jsonplaceholder.typicode.com/users";// Assigning the URL to a const
+let userData = [];// global variable
 
 window.onload = () => {
     populatePage(URL);
 }
 
-const populatePage = async (myURL) => { //myURL = URL
+const populatePage = async (myURL) => { //using async function to fetch URl
     userData = await fetch(myURL)
     userData = await userData.json()
     userData.map(user => addUser(user))
     userData.map(user => populateModal(user.name));
+    adddressAsString(userData);
 }
 
 const addUser = user => {
-    let containerDiv = document.querySelector(".userData")
+    let containerDiv = document.querySelector(".userData")// getting the information from HTML
     let userDiv = `
     <div class="col-12 col-md-6 col-lg-4 pb-2">
         <div class="card">
@@ -28,15 +29,15 @@ const addUser = user => {
             </div>
         </div>
     </div>`
-    containerDiv.innerHTML += userDiv;
+    containerDiv.innerHTML += userDiv;// Setting the value of innerHTML lets us easily replace the existing contents of an element with new content.
 }
 
 const searchUser = async () => {
     let searchText = document.querySelector("#search").value
-    if (searchText.length > 3) {        
-        let searchType = document.querySelector("#searchTypeID").value        
-        let containerDiv = document.querySelector(".userData")
-        containerDiv.innerHTML = "";
+    if (searchText.length > 3) { // when user types in more then 3 letters then the searching from doc starts
+        let searchType = document.querySelector("#searchTypeID").value // The value property sets or returns the value of the value attribute of a text field.     
+        let containerDiv = document.querySelector(".userData")// selecting the data from "containerDiv"
+        containerDiv.innerHTML = "";// clearing it first
         let filteredUserData = [];
         switch (searchType) {
             case "email":
@@ -54,6 +55,15 @@ const searchUser = async () => {
     }
 }
 
-populateModal = (userName) => {
+const populateModal = (userName) => {// here wen we click the names button we get only the names
     document.querySelector(".onlyNames").innerHTML += `<li class="list-group-item">${userName}</li>`
+}
+
+const adddressAsString = (userData) =>{
+    let addressString= userData.reduce((address,currentUser)=>{
+     return console.log(currentUser.address);
+
+    })
+
+
 }
