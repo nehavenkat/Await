@@ -47,7 +47,50 @@
 </head>
 
 <body>
-    <div class="container row userData">
+    <!-- Ex2) Create a dropdown (<select>) that allows the user to select between name, username and email. 
+         Create then a filter. When the user types in something, you should filter the user based on the input and on the value of the select.
+         Es.: select on NAME. Filter input = Glenna, only user id number 9 should remain -->
+
+
+    <div class="container-fluid">
+        <div class="selectUser row px-2 py-2">
+            <select id="searchTypeID" class="custom-select col">
+                <option selected>Select</option>
+                <option value="name">Name</option>
+                <option value="username">Username</option>
+                <option value="email">Email</option>
+            </select>
+            <input id="search" onkeyup="searchUser()" class="col form-control" type="text"
+                placeholder="Please select and type here!">
+        </div>
+        <!-- Ex3) Create a function that, from the list of users, extracts only the name -->
+        <div class="row px-2 py-2">
+            <button type="button" class="btn btn-info btn-block" data-toggle="modal"
+                data-target="#exampleModal">Name</button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">All the names</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body onlyNames">
+                        <ul class="list-group">                           
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Ex1) Get and present, using async / await pattern the users from: https://jsonplaceholder.typicode.com/users -->
+        <div class="row userData">
+        </div>
     </div>
 
     <!-- Optional JavaScript -->
